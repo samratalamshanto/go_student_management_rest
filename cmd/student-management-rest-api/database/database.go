@@ -1,4 +1,4 @@
-package db
+package database
 
 import (
 	"Student_Management_Rest_API_GO/cmd/student-management-rest-api/model"

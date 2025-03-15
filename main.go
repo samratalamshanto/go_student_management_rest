@@ -1,13 +1,13 @@
 package main
 
 import (
-	"Student_Management_Rest_API_GO/cmd/student-management-rest-api/db"
+	"Student_Management_Rest_API_GO/cmd/student-management-rest-api/database"
 	"Student_Management_Rest_API_GO/cmd/student-management-rest-api/routes"
 	"log"
 )
 
 func main() {
-	dbErr := db.ConnectDB()
+	dbErr := database.ConnectDB()
 	if dbErr != nil {
 		log.Fatal(dbErr)
 	}
