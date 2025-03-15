@@ -19,7 +19,7 @@ func GetStudentData(id uint) (*model.Student, error) {
 
 func GetStudentDataEager(id uint) (*model.Student, error) {
 	var student model.Student
-	res := database.DB.Preload("Courses").Preload("FeesInvoices").First(&student, id)
+	res := database.DB.Preload("Courses.Teachers").Preload("FeesInvoices").First(&student, id)
 	return &student, res.Error
 }
 

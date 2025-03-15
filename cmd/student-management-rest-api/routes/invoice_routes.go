@@ -14,7 +14,7 @@ func InvoiceRoutes(r *gin.Engine) {
 	}
 	routes := r.Group(version + "/api/invoice")
 	{
-		routes.GET("/", controller.GetAllCourseData)
+		routes.GET("/", controller.GetAllInvoiceData)
 		routes.GET("/:id", controller.GetInvoiceData)
 		routes.POST("/", controller.PostInvoiceData)
 	}
