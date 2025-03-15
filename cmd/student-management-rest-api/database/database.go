@@ -15,7 +15,7 @@ var DB *gorm.DB
 func ConnectDB() error {
 	err := godotenv.Load()
 	if err != nil {
-		return fmt.Errorf("Error loading .env file")
+		return fmt.Errorf("error loading .env file")
 	}
 
 	connectionStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
@@ -28,7 +28,7 @@ func ConnectDB() error {
 
 	db, conErr := gorm.Open(postgres.Open(connectionStr), &gorm.Config{})
 	if conErr != nil {
-		return fmt.Errorf("Error connecting to database")
+		return fmt.Errorf("error connecting to database")
 	}
 
 	log.Println("Successfully connected to database")
@@ -37,7 +37,7 @@ func ConnectDB() error {
 	//auto migrate
 	errMigrate := db.AutoMigrate(&model.Student{}, &model.Teacher{}, &model.Course{}, &model.Invoice{})
 	if errMigrate != nil {
-		return fmt.Errorf("Error Migrating database")
+		return fmt.Errorf("error Migrating database")
 	}
 
 	return nil

@@ -15,7 +15,7 @@ type CommonResponse struct {
 	Err     interface{} `json:"err"`
 }
 
-func SuccessResponse(c *gin.Context, data interface{}, msg string) {
+func SuccessResponse(c *gin.Context, msg string, data interface{}) {
 	c.JSON(http.StatusOK, CommonResponse{
 		Code:    http.StatusOK,
 		Success: true,
@@ -27,7 +27,7 @@ func SuccessResponse(c *gin.Context, data interface{}, msg string) {
 	})
 }
 
-func CreatedResponse(c *gin.Context, data interface{}, msg string) {
+func CreatedResponse(c *gin.Context, msg string, data interface{}) {
 	c.JSON(http.StatusCreated, CommonResponse{
 		Code:    http.StatusCreated,
 		Success: true,
@@ -39,7 +39,7 @@ func CreatedResponse(c *gin.Context, data interface{}, msg string) {
 	})
 }
 
-func ClientSideErrorResponse(c *gin.Context, err interface{}, errMsg string) {
+func ClientErrorResponse(c *gin.Context, errMsg string, err interface{}) {
 	c.JSON(http.StatusBadRequest, CommonResponse{
 		Code:    http.StatusBadRequest,
 		Success: false,
@@ -51,7 +51,7 @@ func ClientSideErrorResponse(c *gin.Context, err interface{}, errMsg string) {
 	})
 }
 
-func ServerSideErrorResponse(c *gin.Context, err interface{}, errMsg string) {
+func ServerErrorResponse(c *gin.Context, errMsg string, err interface{}) {
 	c.JSON(http.StatusInternalServerError, CommonResponse{
 		Code:    http.StatusInternalServerError,
 		Success: false,

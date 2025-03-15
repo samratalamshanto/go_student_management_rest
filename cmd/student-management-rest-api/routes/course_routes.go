@@ -16,6 +16,7 @@ func CourseRoutes(r *gin.Engine) {
 	{
 		routes.GET("/", controller.GetAllCourseData)
 		routes.GET("/:id", controller.GetCourseData)
+		routes.GET("/eager/:id", controller.GetCourseDataEager)
 		routes.POST("/", controller.PostCourseData)
 		routes.DELETE("/:id", controller.DeleteCourseData)
 	}
