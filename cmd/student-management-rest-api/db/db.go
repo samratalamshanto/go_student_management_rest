@@ -1,6 +1,7 @@
 package db
 
 import (
+	"Student_Management_Rest_API_GO/cmd/student-management-rest-api/model"
 	"fmt"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
@@ -34,6 +35,10 @@ func ConnectDB() error {
 	DB = db
 
 	//auto migrate
+	errMigrate := db.AutoMigrate(&model.Student{}, &model.Teacher{}, &model.Course{}, &model.Invoice{})
+	if errMigrate != nil {
+		return fmt.Errorf("Error Migrating database")
+	}
 
 	return nil
 }
