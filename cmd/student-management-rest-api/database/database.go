@@ -35,7 +35,7 @@ func ConnectDB() error {
 	DB = db
 
 	//auto migrate
-	errMigrate := db.AutoMigrate(&model.Student{}, &model.Teacher{}, &model.Course{}, &model.Invoice{})
+	errMigrate := db.AutoMigrate(&model.Student{}, &model.Teacher{}, &model.Course{}, &model.Invoice{}, &model.User{})
 	if errMigrate != nil {
 		return fmt.Errorf("error Migrating database")
 	}
