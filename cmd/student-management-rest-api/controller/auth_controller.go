@@ -26,13 +26,13 @@ func CreateUser(c *gin.Context) {
 func Login(c *gin.Context) {
 	var loginDto dto.LoginDto
 	if err := c.ShouldBind(&loginDto); err != nil {
-		utility.ClientErrorResponse(c, "Failed to parse login information", err)
+		utility.JwtTokenErrorResponse(c, "Failed to parse login information", err)
 		return
 	}
 
 	responseBody, errLogin := service.Login(loginDto)
 	if errLogin != nil {
-		utility.ServerErrorResponse(c, "Failed to parse login information", errLogin)
+		utility.JwtTokenErrorResponse(c, errLogin.Error(), errLogin)
 		return
 	}
 
