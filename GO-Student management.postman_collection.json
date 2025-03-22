@@ -418,6 +418,153 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"abc\",\r\n    \"password\": \"abc\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authUrl}}/register",
+							"host": [
+								"{{authUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"abc\",\r\n    \"password\": \"abc\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authUrl}}/create-user",
+									"host": [
+										"{{authUrl}}"
+									],
+									"path": [
+										"create-user"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 22 Mar 2025 13:58:30 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "136"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 201,\n    \"success\": true,\n    \"message\": \"Successfully Created User\",\n    \"msg\": \"Successfully Created User\",\n    \"data\": \"abc\",\n    \"error\": null,\n    \"err\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Login Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"abc\",\r\n    \"password\": \"abc\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authUrl}}/login",
+							"host": [
+								"{{authUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"abc\",\r\n    \"password\": \"abc\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authUrl}}/login",
+									"host": [
+										"{{authUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 22 Mar 2025 14:07:48 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "552"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"message\": \"Successfully LoggedIn\",\n    \"msg\": \"Successfully LoggedIn\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDI2NTYwNTgsInVzZXJJZCI6MSwidXNlclJvbGUiOiJ1c2VyIiwidXNlcm5hbWUiOiJhYmMifQ.ZN1j33q2aqzHzpcwnCSviXmDpDj-LLQ8vd9aZ9pCjPc\",\n        \"tokenExpiryTime\": 1742656058,\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDI2NzA0NjQsInVzZXJJZCI6MSwidXNlck5hbWUiOiJhYmMiLCJ1c2VyUm9sZSI6InVzZXIifQ.KTJpzfNakv4Xwt7gHwPBh5CTJkBU8QtJqdsuZUClWjU\",\n        \"refreshTokenExpiryTime\": 1742670464\n    },\n    \"error\": null,\n    \"err\": null\n}"
+						}
+					]
+				}
+			]
 		}
 	],
 	"event": [
@@ -446,6 +593,11 @@
 		{
 			"key": "url",
 			"value": "http://localhost:9090/v1/api",
+			"type": "string"
+		},
+		{
+			"key": "authUrl",
+			"value": "http://localhost:9090/auth",
 			"type": "string"
 		}
 	]
