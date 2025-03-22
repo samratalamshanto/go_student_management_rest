@@ -10,41 +10,48 @@ import (
 
 var secretKey = []byte(os.Getenv("JWT_SECRET"))
 
-func GenerateJwtToken(username string) (string, error) {
+func GenerateJwtToken(username, userRole string, userId uint) (string, int64, error) {
 	if secretKey == nil {
-		return "", errors.New("JWT Secret Error")
+		return "", 0, errors.New("JWT Secret Error")
 	}
+
+	expirationTime := time.Now().Add(time.Hour * 1).Unix()
 
 	//create token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"username": username,
-		"exp":      time.Now().Add(time.Hour * 1).Unix(),
+		"userId":   userId,
+		"userRole": userRole,
+		"exp":      expirationTime,
 	})
 
 	//signed token
 	tokenString, err := token.SignedString(secretKey)
 	if err != nil {
-		return "", err
+		return "", 0, errors.New("JWT JWT Token Error")
 	}
-	return tokenString, nil
+	return tokenString, expirationTime, nil
 }
 
-func GenerateRefreshToken(username string, userId uint, userRole string) (string, error) {
+func GenerateRefreshToken(username, userRole string, userId uint) (string, int64, error) {
 	if secretKey == nil {
-		return "", errors.New("JWT Secret Error")
+		return "", 0, errors.New("JWT Secret Error")
 	}
+	expirationTime := time.Now().Add(time.Hour * 5).Unix()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"userName": username,
 		"userId":   userId,
 		"userRole": userRole,
-		"exp":      time.Now().Add(time.Hour * 5).Unix(),
+		"exp":      expirationTime,
 	})
 
 	refreshToken, err := token.SignedString(secretKey)
 	if err != nil {
-		return "", errors.New("JWT Refresh Token Error")
+
+		return "", 0, errors.New("JWT Refresh Token Error")
 	}
-	return refreshToken, nil
+
+	return refreshToken, expirationTime, nil
 }
 
 func ValidateToken(jwtToken string) (*jwt.Token, jwt.MapClaims, error) {
