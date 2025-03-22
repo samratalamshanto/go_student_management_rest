@@ -62,3 +62,15 @@ func ServerErrorResponse(c *gin.Context, errMsg string, err interface{}) {
 		Data:    nil,
 	})
 }
+
+func JwtTokenErrorResponse(c *gin.Context, errMsg string, err interface{}) {
+	c.JSON(http.StatusUnauthorized, CommonResponse{
+		Code:    http.StatusUnauthorized,
+		Success: false,
+		Message: errMsg,
+		Msg:     errMsg,
+		Error:   err,
+		Err:     err,
+		Data:    nil,
+	})
+}

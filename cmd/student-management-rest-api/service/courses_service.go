@@ -19,7 +19,10 @@ func GetCourseDataLazy(id uint) (*model.Course, error) {
 
 func GetCourseDataEager(id uint) (*model.Course, error) {
 	var course model.Course
-	res := database.DB.Preload("Students").Preload("Teachers").First(&course, id)
+	res := database.DB.
+		Preload("Students", "active=? and class=?", true, 1).
+		Preload("Teachers", "active=?", true).
+		First(&course, id)
 	return &course, res.Error
 }
 
